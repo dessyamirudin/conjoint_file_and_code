@@ -60,6 +60,16 @@ result <- optim(par = initial_par_alpha, fn = objective_function)
 # Print the results
 print(result$par)
 
+# ----- check market share with the new parameter alpha
+# marketshare matrix alpha
+market_share_alpha = initial_market_share_calc^result$par
+
+# calculating market share segment
+market_share = market_share_alpha/rowSums(market_share_alpha)
+
+# market share brand
+market_share_brand = colSums(segment$`Size(000)`*market_share)/sum(segment$`Size(000)`)
+
 # ----- simulation market share - bran 1 adding Stampel Approval from Home Goods &
 # ----- money back guarantee ----
 
